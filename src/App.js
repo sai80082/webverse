@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
-import logo from './logo.svg';
 import './App.css';
-
+import { Routes, Route } from "react-router-dom";
+import Home from './components/home/Home';
+import Loading from './components/loading/Loading';
 function App() {
+
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -18,32 +20,13 @@ function App() {
   }, []);
 
   return (
-    <div className='h-screen w-screen flex flex-col justify-center items-center bg-black'>
+    <div >
       {isLoading ? (
-        <>
-          <div aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster">
-            <div class="wheel"></div>
-            <div class="hamster">
-              <div class="hamster__body">
-                <div class="hamster__head">
-                  <div class="hamster__ear"></div>
-                  <div class="hamster__eye"></div>
-                  <div class="hamster__nose"></div>
-                </div>
-                <div class="hamster__limb hamster__limb--fr"></div>
-                <div class="hamster__limb hamster__limb--fl"></div>
-                <div class="hamster__limb hamster__limb--br"></div>
-                <div class="hamster__limb hamster__limb--bl"></div>
-                <div class="hamster__tail"></div>
-              </div>
-            </div>
-            <div class="spoke"></div>
-          </div>
-          <p className="loading-text">A webpage is loading</p>
-        </>
+        <Loading></Loading>
       ) : (
-        // Render your actual content here
-        <p>Your page content</p>
+        <Routes>
+          <Route path="/" element={<Home></Home>} />
+        </Routes>
       )}
     </div>
   );
